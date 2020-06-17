@@ -226,13 +226,17 @@ def format_clean_content(
 					tag['onmousedown'] = f'this.lastChild.play(); return false;'
 					tag.append(audio)
 				tag["href"] = f"x-dictionary:d:{href}"
+		for tag in soup.select("[src]"):
+			src = tag['src']
+			if src.startswith("/"):
+				tag['src'] = src[1:]
 		for tag in soup("u"):
 			tag.name = "span"
 			tag["class"] = tag.get("class", []) + ["u"]
 		for tag in soup("s"):
 			tag.name = "del"
 
-		if title:
+		if title and not '<h' in body:
 			h1 = BeautifulSoup.Tag(name="h1")
 			h1.string = title
 			soup.insert(0, h1)
