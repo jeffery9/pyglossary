@@ -296,26 +296,10 @@ def format_clean_content(
 		for tag in soup("s"):
 			tag.name = "del"
 
-<<<<<<< HEAD
 		if title and not '<h' in body:
 			h1 = BeautifulSoup.Tag(name="h1")
 			h1.string = title
 			soup.insert(0, h1)
-=======
-		if '@@@LINK=' in body:
-			entry = body[len('@@@LINK='):]
-			a = BeautifulSoup.Tag(name="a")
-			a["href"] = f"x-dictionary:d:{entry}"
-			a.string = entry
-			tag=soup.find('p')
-			tag.string='See also '
-			tag.insert(1, a)
-
-		# if title and not '<h' in body:
-		# 	h1 = BeautifulSoup.Tag(name="h1")
-		# 	h1.string = title
-		# 	soup.insert(0, h1)
->>>>>>> 0ae60f3... support oxford9
 		# hence the name BeautifulSoup
 		# soup.insert(0,head)
 		content = toStr(soup.encode_contents())
